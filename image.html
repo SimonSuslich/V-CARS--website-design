@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Multiple Images</title>
+    <style>
+        .image-preview-container {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .image-preview {
+            width: 150px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .image-preview span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #aaa;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Multiple Images</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="images">Choose images:</label>
+        <input type="file" id="images" name="images[]" accept="image/*" multiple onchange="previewImages(event)">
+        <div class="image-preview-container" id="imagePreviewContainer">
+            <!-- Image previews will be dynamically inserted here -->
+        </div>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function previewImages(event) {
+            const files = event.target.files; // Get all selected files
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            previewContainer.innerHTML = ''; // Clear existing previews
+
+            if (files.length === 0) {
+                previewContainer.innerHTML = '<p>No images selected</p>';
+                return;
+            }
+
+            Array.from(files).forEach((file) => {
+                const reader = new FileReader();
+
+                // Create a preview element
+                const previewDiv = document.createElement('div');
+                previewDiv.classList.add('image-preview');
+
+                const img = document.createElement('img');
+                const span = document.createElement('span');
+                span.textContent = 'Loading...';
+
+                previewDiv.appendChild(span);
+                previewDiv.appendChild(img);
+                previewContainer.appendChild(previewDiv);
+
+                // Load the image file
+                reader.onload = function (e) {
+                    img.src = e.target.result;
+                    span.style.display = 'none'; // Hide "Loading..." once the image is loaded
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+</body>
+</html>
