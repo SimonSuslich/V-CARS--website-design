@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+          }
+          
+          .main-image {
+            width: 80%;
+            position: relative;
+            margin-bottom: 10px;
+          }
+          
+          .main-image img {
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+          }
+          
+          .main-image img.fade-out {
+            opacity: 0;
+          }
+          
+          .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+          }
+          
+          .nav-button.prev {
+            left: 10px;
+          }
+          
+          .nav-button.next {
+            right: 10px;
+          }
+          
+          .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+          }
+          
+          .thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+          }
+          
+          .thumbnail:hover,
+          .thumbnail:focus {
+            border-color: #007BFF;
+          }
+          
+    </style>
+
+
+
+    <div class="product-gallery">
+        <div class="main-image">
+            <button class="nav-button prev" onclick="prevImage()">&#10094;</button>
+            <img id="currentImage" src="/img/products/car1.webp" alt="Main product image">
+            <button class="nav-button next" onclick="nextImage()">&#10095;</button>
+        </div>
+        <div class="thumbnail-container">
+            <img class="thumbnail" src="/img/products/car1.webp" onclick="changeImage('/img/products/car1.webp', 0)"
+                alt="Thumbnail 1">
+            <img class="thumbnail" src="/img/products/car2.jpg" onclick="changeImage('/img/products/car2.jpg', 1)"
+                alt="Thumbnail 2">
+            <img class="thumbnail" src="/img/products/car3.jpg" onclick="changeImage('/img/products/car3.jpg', 2)"
+                alt="Thumbnail 3">
+            <img class="thumbnail" src="/img/products/mc1.webp" onclick="changeImage('/img/products/mc1.webp', 3)"
+                alt="Thumbnail 4">
+        </div>
+    </div>
+
+
+
+
+    <script>
+        // Array of image URLs
+        const images = [
+        "/img/products/car1.webp",
+        "/img/products/car2.jpg",
+        "/img/products/car3.jpg",
+        "/img/products/mc1.webp"
+        ];
+        let currentIndex = 0;
+
+        // Function to update the main image with a fade transition
+        function changeImage(imageUrl, index) {
+        const currentImage = document.getElementById("currentImage");
+        currentImage.classList.add("fade-out"); // Add fade-out class
+
+        setTimeout(() => {
+            currentImage.src = imageUrl; // Change the image source
+            currentImage.classList.remove("fade-out"); // Remove fade-out class after transition
+        }, 500); // Match the transition duration in CSS
+
+        currentIndex = index;
+        }
+
+        // Function to show the next image
+        function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length; // Loop back to the start
+        changeImage(images[currentIndex], currentIndex);
+        }
+
+        // Function to show the previous image
+        function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length; // Loop to the end
+        changeImage(images[currentIndex], currentIndex);
+        }
+
+
+    </script>
+
+</body>
+
+</html>

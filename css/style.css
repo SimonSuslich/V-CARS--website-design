@@ -136,6 +136,16 @@ nav ul li a:hover {
     color: var(--bg-color-1);
 }
 
+.btn-2 {
+    background-color: var(--bg-color-1);
+    border: var(--text-color-1) 1px solid;
+    color: var(--text-color-1);
+    font-family: 'Blinker', sans-serif;
+    padding: 1rem 2rem;
+    font-weight: 400;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
 
 
 .btn-expand:hover {
@@ -355,6 +365,7 @@ footer {
     grid-template-columns: auto;
     grid-template-rows: auto;
     row-gap: 2rem;
+    place-items: start center;
 }
 
 .contact,
