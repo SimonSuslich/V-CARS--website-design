@@ -249,10 +249,12 @@ section.view-product .product-info-container {
 
 section.view-product .product-description-container {
     grid-area: description;
+    display: grid;
+    row-gap: 1rem;
 }
 
 .product-description-container .description-paragraph {
-    
+    transition: 0.5s ease-in-out;
 }
 
 .product-description-container .description-buttons-container {
@@ -262,11 +264,10 @@ section.view-product .product-description-container {
 }
 
 .description-buttons-container .description-button {
-    background-color: var(--bg-color-1);
-}
-
-.description-buttons-container .description-button svg {
-    fill: var(--text-color-1);
+    background-color: transparent;
+    color: var(--text-color-2);
+    font-family: 'Blinker', sans-serif;
+    border-bottom: 1px var(--text-color-1) solid;
 }
 
 .content-hidden {

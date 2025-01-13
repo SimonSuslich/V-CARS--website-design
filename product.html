@@ -203,8 +203,9 @@
             </div>
 
             <div class="product-description-container">
-                <p class="description-short"></p>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ea dignissimos
+                <p class="description-short description-paragraph"></p>
+                <p class="description description-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Magnam ea dignissimos
                     unde consequatur neque provident. Aliquid voluptatem esse tempora cumque, illum eveniet praesentium
                     nisi blanditiis? Hic quae, eligendi ipsum non numquam illum adipisci, error alias ut reiciendis
                     fugiat quisquam est quaerat! In voluptates porro, velit laudantium laboriosam veniam eos? Temporibus
@@ -246,17 +247,11 @@
 
                 <div class="description-buttons-container">
                     <button class="description-button show-less" onclick="descriptionToggle()">
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#000000' width='24'
-                            height='24'>
-                            <path d="m6.293 13.293 1.414 1.414L12 10.414l4.293 4.293 1.414-1.414L12 7.586z"></path>
-                        </svg>
+                        Show less
                     </button>
 
                     <button class="description-button show-more" onclick="descriptionToggle()">
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#000000' width='24'
-                            height='24'>
-                            <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
-                        </svg>
+                        Show more
                     </button>
                 </div>
 
@@ -415,7 +410,6 @@
                 descriptionElement.classList.add("content-hidden");
                 descriptionShortElement.classList.remove("content-hidden");
             }
-
             descriptionRevealed = !descriptionRevealed
 
         }
